@@ -15,23 +15,30 @@ A modern TypeScript scaffold for building decentralized applications on the Sui 
 
 ## 🚀 Quick Start
 
-\`\`\`bash
 # Clone the repository
+
+```bash
 git clone <your-repo-url>
 cd next-sui-typescript
+```
 
 # Install dependencies
+
+```bash
 npm install
+```
 
 # Start development server
+
+```bash
 npm run dev
-\`\`\`
+```
 
 Open [http://localhost:3000](http://localhost:3000) to see your app.
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 ├── app/                    # Next.js app directory
 │   ├── layout.tsx         # Root layout with providers
 │   ├── page.tsx           # Main page component
@@ -50,34 +57,35 @@ Open [http://localhost:3000](http://localhost:3000) to see your app.
 ├── tsconfig.json          # TypeScript configuration
 ├── tailwind.config.ts     # Tailwind configuration
 └── next.config.mjs        # Next.js configuration
-\`\`\`
+```
 
 ## 🔧 Smart Contract Integration
 
 ### 1. Deploy Your Contract
 
-\`\`\`bash
 # Deploy to devnet
+
+```bash
 sui client publish --gas-budget 100000000
-\`\`\`
+```
 
 ### 2. Update Configuration
 
 Edit `lib/smart-contract/config.json`:
 
-\`\`\`json
+```json
 {
   "PACKAGE_ID": "0x_YOUR_PACKAGE_ID_HERE",
   "ADMIN_CAP": "0x_YOUR_ADMIN_CAP_HERE",
   "SHARED_OBJECT": "0x_YOUR_SHARED_OBJECT_HERE"
 }
-\`\`\`
+```
 
 ### 3. Define Types
 
 Update `lib/smart-contract/types.ts`:
 
-\`\`\`typescript
+```typescript
 export interface Item {
   id?: string
   name: string
@@ -87,13 +95,13 @@ export interface Item {
   isActive: boolean
   createdAt?: number
 }
-\`\`\`
+```
 
 ### 4. Create Transaction Builders
 
 Update `lib/smart-contract/client-transactions.ts`:
 
-\`\`\`typescript
+```typescript
 export const clientTransactions = {
   createItem: (name: string, description: string, price: number): Transaction => {
     const transaction = new Transaction()
@@ -109,13 +117,13 @@ export const clientTransactions = {
     return transaction
   }
 }
-\`\`\`
+```
 
 ### 5. Add Query Functions
 
 Update `lib/smart-contract/queries.ts`:
 
-\`\`\`typescript
+```typescript
 async getItemInfo(itemId: string): Promise<Item | null> {
   const txn = new Transaction()
   txn.moveCall({
@@ -126,13 +134,13 @@ async getItemInfo(itemId: string): Promise<Item | null> {
   const returnValues = await this.devInspectTransactionBlock(txn)
   // Parse and return typed data
 }
-\`\`\`
+```
 
 ### 6. Create Utility Functions
 
 Update `lib/smart-contract/utils.ts`:
 
-\`\`\`typescript
+```typescript
 export const createItem = async (
   name: string, 
   description: string, 
@@ -144,16 +152,18 @@ export const createItem = async (
 export const getItemInfo = async (itemId: string): Promise<Item | null> => {
   return await contractQueries.getItemInfo(itemId)
 }
-\`\`\`
+```
 
 ## 🔑 Environment Variables
 
 Create a `.env.local` file:
 
-\`\`\`bash
+
 # Optional: For read-only queries
+
+```bash
 NEXT_PUBLIC_QUERY_PRIVATE_KEY=your_private_key_here
-\`\`\`
+```
 
 ## 📦 Key Dependencies
 
@@ -166,7 +176,7 @@ NEXT_PUBLIC_QUERY_PRIVATE_KEY=your_private_key_here
 
 ## 🎯 Usage in Components
 
-\`\`\`typescript
+```typescript
 import { useSignAndExecuteTransaction } from "@mysten/dapp-kit"
 import { createItem, getItemInfo, type Item } from "@/lib/smart-contract"
 
@@ -195,7 +205,7 @@ useEffect(() => {
   }
   fetchItem()
 }, [])
-\`\`\`
+```
 
 ## 🛡️ TypeScript Benefits
 
@@ -209,7 +219,7 @@ useEffect(() => {
 
 The project uses strict TypeScript settings:
 
-\`\`\`json
+```json
 {
   "compilerOptions": {
     "strict": true,
@@ -217,7 +227,7 @@ The project uses strict TypeScript settings:
     "exactOptionalPropertyTypes": true
   }
 }
-\`\`\`
+```
 
 ## 📚 Documentation
 
@@ -228,39 +238,52 @@ The project uses strict TypeScript settings:
 
 ## 🛠️ Development Scripts
 
-\`\`\`bash
 # Development
+
+```bash
 npm run dev          # Start development server
 npm run build        # Build for production
 npm run start        # Start production server
 npm run lint         # Run ESLint
 npm run type-check   # Run TypeScript compiler check
-\`\`\`
+```
 
 ## 🧪 Testing
 
-\`\`\`bash
+
 # Run tests
+
+```bash
 npm run test
+```
 
 # Run tests in watch mode
+
+```bash
 npm run test:watch
+```
 
 # Run tests with coverage
+
+```bash
 npm run test:coverage
-\`\`\`
+```
 
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
 
-\`\`\`bash
 # Install Vercel CLI
+
+```bash
 npm i -g vercel
+```
 
 # Deploy
+
+```bash
 vercel
-\`\`\`
+```
 
 ### Other Platforms
 
@@ -301,11 +324,13 @@ The project includes:
 ### Common Issues
 
 **TypeScript Errors**
-\`\`\`bash
+
 # Clear Next.js cache
+
+```bash
 rm -rf .next
 npm run dev
-\`\`\`
+```
 
 **Wallet Connection Issues**
 - Ensure wallet extension is installed
@@ -326,8 +351,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Sui Website](https://sui.io/)
 - [Sui Discord](https://discord.com/invite/Sui)
 - [Sui GitHub](https://github.com/MystenLabs/sui)
-- [DevDanny on X](https://twitter.com/devdanny)
-- [DevDanny on GitHub](https://github.com/devdanny)
+- [DevDanny on X](https://twitter.com/dannyclassi_c)
+- [DevDanny on GitHub](https://github.com/Verifieddanny)
 
 ## 🙏 Acknowledgments
 
@@ -339,7 +364,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Built with ❤️ for the Sui ecosystem**
-\`\`\`
+
 
 This TypeScript README includes:
 
