@@ -4,7 +4,7 @@ This template provides a structured way to integrate your Sui smart contracts wi
 
 ## 📁 Folder Structure
 
-\`\`\`
+```
 lib/smart-contract/
 ├── config.json              # Contract addresses and IDs
 ├── client-transactions.ts   # Transaction builders for wallet execution
@@ -12,40 +12,39 @@ lib/smart-contract/
 ├── types.ts                # TypeScript interfaces
 ├── utils.ts                # High-level utility functions
 └── index.ts                # Main export file
-\`\`\`
+```
 
 ## 🚀 Setup Instructions
 
 ### 1. Update Contract Configuration
 
 Edit `lib/smart-contract/config.json` with your contract details:
-
-\`\`\`json
+```json
 {
   "PACKAGE_ID": "0x_YOUR_PACKAGE_ID_HERE",
   "ADMIN_CAP": "0x_YOUR_ADMIN_CAP_HERE", 
   "SHARED_OBJECT": "0x_YOUR_SHARED_OBJECT_HERE"
 }
-\`\`\`
+```
 
 ### 2. Define Your Data Types
 
 Update `lib/smart-contract/types.ts` with your contract's data structures:
 
-\`\`\`typescript
+```typescript
 export interface YourDataType {
   id?: string
   field1: string
   field2: number
   // Add your fields here
 }
-\`\`\`
+```
 
 ### 3. Create Transaction Builders
 
 Update `lib/smart-contract/client-transactions.ts` with your contract functions:
 
-\`\`\`typescript
+```typescript
 export const clientTransactions = {
   yourFunction: (param1: string, param2: number) => {
     const transaction = new Transaction()
@@ -59,13 +58,13 @@ export const clientTransactions = {
     return transaction
   }
 }
-\`\`\`
+```
 
 ### 4. Add Query Functions
 
 Update `lib/smart-contract/queries.ts` with your read-only functions:
 
-\`\`\`typescript
+```typescript
 async getYourData(objectId: string) {
   const txn = new Transaction()
   txn.moveCall({
@@ -76,13 +75,13 @@ async getYourData(objectId: string) {
   const returnValues = await this.devInspectTransactionBlock(txn)
   // Parse and return your data
 }
-\`\`\`
+```
 
 ### 5. Create Utility Functions
 
 Update `lib/smart-contract/utils.ts` with high-level functions:
 
-\`\`\`typescript
+```typescript
 export const createYourObject = async (param1: string, param2: number) => {
   return clientTransactions.yourFunction(param1, param2)
 }
@@ -90,20 +89,20 @@ export const createYourObject = async (param1: string, param2: number) => {
 export const getYourObject = async (objectId: string) => {
   return await contractQueries.getYourData(objectId)
 }
-\`\`\`
+```
 
 ### 6. Environment Variables
 
 Add your private key for queries (optional, for read-only operations):
 
-\`\`\`bash
+```bash
 # .env.local
 NEXT_PUBLIC_QUERY_PRIVATE_KEY=your_private_key_here
-\`\`\`
+```
 
 ## 🔧 Usage in Components
 
-\`\`\`typescript
+```typescript
 import { useSignAndExecuteTransaction } from "@mysten/dapp-kit"
 import { createYourObject, getYourObject } from "@/lib/smart-contract"
 
@@ -121,7 +120,7 @@ const handleCreate = async () => {
     }
   )
 }
-\`\`\`
+```
 
 ## 📝 Notes
 
